@@ -1,2 +1,15 @@
-# aws-end-to-end-data-pipeline
-AWS data pipeline using PostgreSQL, DMS, CDC, S3, Glue, Athena, and Redshift.
+# AWS End-to-End Data Engineering Pipeline
+
+## Project Overview
+
+This project demonstrates an end-to-end data engineering pipeline on AWS, designed to replicate transactional data from PostgreSQL into analytical data systems.
+
+### Business Problem
+
+In a typical e-commerce application, PostgreSQL handles operational transactions such as customer orders and payments. Running complex analytical queries on the same database can compete with transactional workloads and affect application performance.
+
+### Solution
+
+The pipeline uses AWS Database Migration Service (DMS) for initial data loading and Change Data Capture (CDC). Transactional data is replicated to Amazon S3 and Amazon Redshift, while AWS Glue and Amazon Athena support data cataloging and SQL analytics.
+
+The project also includes SQL performance benchmarking to examine the differences between transactional and analytical workloads.
