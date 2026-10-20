@@ -13,3 +13,17 @@ In a typical e-commerce application, PostgreSQL handles operational transactions
 The pipeline uses AWS Database Migration Service (DMS) for initial data loading and Change Data Capture (CDC). Transactional data is replicated to Amazon S3 and Amazon Redshift, while AWS Glue and Amazon Athena support data cataloging and SQL analytics.
 
 The project also includes SQL performance benchmarking to examine the differences between transactional and analytical workloads.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Amazon RDS PostgreSQL] -->|Full Load + CDC| B[AWS DMS]
+    B --> C[Amazon S3]
+    C --> D[AWS Glue Data Catalog]
+    D -.-> E[Amazon Athena]
+    C --> F[Amazon Redshift]
+    F --> G[Staging + MERGE]
+```
+
+For details, see [Architecture Documentation](architecture/README.md).
