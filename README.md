@@ -27,3 +27,15 @@ flowchart LR
 ```
 
 For details, see [Architecture Documentation](architecture/README.md).
+
+## Technology Stack
+
+| Technology | Role in the Project |
+|---|---|
+| Amazon RDS (PostgreSQL) | OLTP source database for transactional data |
+| AWS DMS | Full-load migration and Change Data Capture (CDC) |
+| Amazon S3 | Raw data storage and data lake |
+| AWS Glue | Data Catalog and metadata management |
+| Amazon Athena | Serverless SQL analytics on S3 data |
+| Amazon Redshift | OLAP data warehouse for analytical queries |
+| SQL | Data transformation, incremental MERGE, and performance benchmarking |
