@@ -39,3 +39,23 @@ For details, see [Architecture Documentation](architecture/README.md).
 | Amazon Athena | Serverless SQL analytics on S3 data |
 | Amazon Redshift | OLAP data warehouse for analytical queries |
 | SQL | Data transformation, incremental MERGE, and performance benchmarking |
+
+## Data Pipeline Workflow
+
+### 1. Transactional Data Source
+Amazon RDS PostgreSQL serves as the OLTP source database, storing transactional records.
+
+### 2. Initial Data Load
+AWS DMS performs a full load to replicate existing PostgreSQL data into Amazon S3.
+
+### 3. Change Data Capture (CDC)
+AWS DMS captures ongoing INSERT, UPDATE, and DELETE operations from PostgreSQL and delivers change records to Amazon S3.
+
+### 4. Data Lake and SQL Analytics
+Amazon S3 stores replicated data. AWS Glue Data Catalog provides table metadata, allowing Amazon Athena to query the data using SQL.
+
+### 5. Data Warehouse Loading
+Data is loaded from Amazon S3 into Amazon Redshift staging tables.
+
+### 6. Incremental Data Processing
+SQL MERGE operations are used to apply incremental changes to target tables in Amazon Redshift. Correct handling of updates, deletes, and repeated CDC events requires validation.
